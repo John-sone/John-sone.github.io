@@ -1,0 +1,657 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="说明：这次的博文是转载自python cookbook这本书中的内容，转载的目的只是为了整理学习的知识。另外，此类博文会使用英文，目的也是为了学习英文，特此说明!
+ProblemYou need to unpack N elements from an iterable, but the iterable may be longer than N elements, causing a “too">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从任意长度的可迭代对象中分解元素">
+<meta property="og:url" content="http://gaoqiang.biz/2016/04/15/从任意长度的可迭代对象中分解元素/index.html">
+<meta property="og:site_name" content="猫窝">
+<meta property="og:description" content="说明：这次的博文是转载自python cookbook这本书中的内容，转载的目的只是为了整理学习的知识。另外，此类博文会使用英文，目的也是为了学习英文，特此说明!
+ProblemYou need to unpack N elements from an iterable, but the iterable may be longer than N elements, causing a “too">
+<meta property="og:updated_time" content="2016-04-15T07:15:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从任意长度的可迭代对象中分解元素">
+<meta name="twitter:description" content="说明：这次的博文是转载自python cookbook这本书中的内容，转载的目的只是为了整理学习的知识。另外，此类博文会使用英文，目的也是为了学习英文，特此说明!
+ProblemYou need to unpack N elements from an iterable, but the iterable may be longer than N elements, causing a “too">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 从任意长度的可迭代对象中分解元素 | 猫窝 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">猫窝</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从任意长度的可迭代对象中分解元素
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-15T11:45:34+08:00" content="2016-04-15">
+              2016-04-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/15/从任意长度的可迭代对象中分解元素/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/15/从任意长度的可迭代对象中分解元素/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>说明：这次的博文是转载自python cookbook这本书中的内容，转载的目的只是为了整理学习的知识。另外，此类博文会使用英文，目的也是为了学习英文，特此说明!</strong></p>
+<h2 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h2><p>You need to unpack N elements from an iterable, but the iterable may be longer than N elements, causing a “too many values to unpack” exception.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Python “star expression” can be used to address this proble.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><ol>
+<li><p>Average the homework grades, and drop the first and last one.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drop_first_last</span><span class="params">(grades)</span>:</span></span><br><span class="line">  first, *middle, last = grades</span><br><span class="line">  <span class="keyword">return</span> avg(middle)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Unpack user records that consist of a name and email address, followed by an arbitrary number of phone numbers.<br>It’s worth nothing that the phone_numbers variable will aways be a list, regardless of how many phone numbers are unpacked (including none).</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>record = (<span class="string">'Dave'</span>, <span class="string">'dave@example.com'</span>, <span class="string">'733-555-1212'</span>, <span class="string">'847-555-1212'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, email, *phone_number = record</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name</span><br><span class="line"><span class="string">'Dave'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>email</span><br><span class="line"><span class="string">'dave@example.com'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>phone_number</span><br><span class="line">[<span class="string">'733-555-1212'</span>, <span class="string">'847-555-1212'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>record = (<span class="string">'Dave'</span>, <span class="string">'dave@example.com'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, email, *phone_number = record</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name</span><br><span class="line"><span class="string">'Dave'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>email</span><br><span class="line"><span class="string">'dave@example.com'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>phone_number</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The starred variable can also be the first one in the list.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; *trailing, current = [19, 8, 1, 3, 4]</span><br><span class="line">&gt;&gt;&gt; trailing</span><br><span class="line">[19, 8, 1, 3]</span><br><span class="line">&gt;&gt;&gt; current</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Iterate over a sequence of tuples of varying length.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>records = [(<span class="string">'foo'</span>, <span class="number">1</span>, <span class="number">2</span>), (<span class="string">'bar'</span>, <span class="string">'hello'</span>), (<span class="string">'foo'</span>, <span class="number">3</span>, <span class="number">4</span>)]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">do_foo</span><span class="params">(x, y)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'foo'</span>, x, y)</span><br><span class="line"><span class="meta">... </span>    </span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">do_bar</span><span class="params">(s)</span>:</span></span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'bar'</span>, s)</span><br><span class="line"><span class="meta">... </span>    </span><br><span class="line">...</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> tag, *args <span class="keyword">in</span> records:</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">if</span> tag == <span class="string">'foo'</span>:</span><br><span class="line"><span class="meta">... </span>        do_foo(*args)</span><br><span class="line"><span class="meta">... </span>    <span class="keyword">elif</span> tag == <span class="string">'bar'</span>:</span><br><span class="line"><span class="meta">... </span>        do_bar(*args)</span><br><span class="line"><span class="meta">... </span>        </span><br><span class="line"><span class="meta">... </span>    </span><br><span class="line">...</span><br><span class="line">foo <span class="number">1</span> <span class="number">2</span></span><br><span class="line">bar hello</span><br><span class="line">foo <span class="number">3</span> <span class="number">4</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Split strings.<br>If want to upack valuses and throw them away. Can use a common throwaway variable name. For example, you can use such as ‘_’ replace ‘fields’.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = <span class="string">'nobody:*:-2:-2:Unprivileged User:/var/empty:/usr/bin/false'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, *fields, homedir, shell = line.split(<span class="string">':'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name</span><br><span class="line"><span class="string">'nobody'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>homedir</span><br><span class="line"><span class="string">'/var/empty'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>shell</span><br><span class="line"><span class="string">'/usr/bin/false'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>fields</span><br><span class="line">[<span class="string">'*'</span>, <span class="string">'-2'</span>, <span class="string">'-2'</span>, <span class="string">'Unprivileged User'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name, *_, homedir, shell = line.split(<span class="string">':'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>name</span><br><span class="line"><span class="string">'nobody'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>homedir</span><br><span class="line"><span class="string">'/var/empty'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>shell</span><br><span class="line"><span class="string">'/usr/bin/false'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>_</span><br><span class="line">[<span class="string">'*'</span>, <span class="string">'-2'</span>, <span class="string">'-2'</span>, <span class="string">'Unprivileged User'</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/14/元组/" rel="next" title="元组">
+                <i class="fa fa-chevron-left"></i> 元组
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/04/15/从任意长度的可迭代对象中分解元素/"
+           data-title="从任意长度的可迭代对象中分解元素" data-url="http://gaoqiang.biz/2016/04/15/从任意长度的可迭代对象中分解元素/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Johnny.GQ" />
+          <p class="site-author-name" itemprop="name">Johnny.GQ</p>
+          <p class="site-description motion-element" itemprop="description">You can't do it — that's the biggest lie on earth.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/John-sone" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://m.weibo.cn/u/2703568625" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem"><span class="nav-number">1.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.1.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Johnny.GQ</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gaoqiangbiz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
