@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -80,19 +80,16 @@
 
 
 
-<meta name="description" content="一年之前就折腾过一次博客，写到中途觉得没有用为知笔记本方便，就放弃了。时隔一年之久，再次萌发了写博客的念头，在安装hexo的过程中，发现之前安装的记忆已经完全回想不起来了，所以这次便将安装的过程记录下来，以备后用。
-安装Hexo是基于Node.js的，所以要首先安装Node.js。Node.js直接官网下载安装包安装。另外，由于需要将博客提交到Github上去，所以要安装git。git安装在mac">
+<meta name="description" content="*args and **kwargs are mostly used in function definitions. *args and **kwargs allow you to pass a variable number of arguments to a function. What variable means here is that you do not know beforeha">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用hexo搭建github博客">
-<meta property="og:url" content="http://gaoqiang.biz/2016/04/12/使用hexo搭建github博客/index.html">
+<meta property="og:title" content="args和kwargs的用法">
+<meta property="og:url" content="http://gaoqiang.biz/2016/05/09/args和kwargs的用法/index.html">
 <meta property="og:site_name" content="猫窝">
-<meta property="og:description" content="一年之前就折腾过一次博客，写到中途觉得没有用为知笔记本方便，就放弃了。时隔一年之久，再次萌发了写博客的念头，在安装hexo的过程中，发现之前安装的记忆已经完全回想不起来了，所以这次便将安装的过程记录下来，以备后用。
-安装Hexo是基于Node.js的，所以要首先安装Node.js。Node.js直接官网下载安装包安装。另外，由于需要将博客提交到Github上去，所以要安装git。git安装在mac">
-<meta property="og:updated_time" content="2016-04-12T12:56:39.000Z">
+<meta property="og:description" content="*args and **kwargs are mostly used in function definitions. *args and **kwargs allow you to pass a variable number of arguments to a function. What variable means here is that you do not know beforeha">
+<meta property="og:updated_time" content="2016-05-09T06:03:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用hexo搭建github博客">
-<meta name="twitter:description" content="一年之前就折腾过一次博客，写到中途觉得没有用为知笔记本方便，就放弃了。时隔一年之久，再次萌发了写博客的念头，在安装hexo的过程中，发现之前安装的记忆已经完全回想不起来了，所以这次便将安装的过程记录下来，以备后用。
-安装Hexo是基于Node.js的，所以要首先安装Node.js。Node.js直接官网下载安装包安装。另外，由于需要将博客提交到Github上去，所以要安装git。git安装在mac">
+<meta name="twitter:title" content="args和kwargs的用法">
+<meta name="twitter:description" content="*args and **kwargs are mostly used in function definitions. *args and **kwargs allow you to pass a variable number of arguments to a function. What variable means here is that you do not know beforeha">
 
 
 
@@ -110,7 +107,7 @@
   };
 </script>
 
-  <title> 使用hexo搭建github博客 | 猫窝 </title>
+  <title> args和kwargs的用法 | 猫窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -240,7 +237,7 @@
             
             
               
-                使用hexo搭建github博客
+                args和kwargs的用法
               
             
           </h1>
@@ -252,8 +249,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-12T16:12:21+08:00" content="2016-04-12">
-              2016-04-12
+            <time itemprop="dateCreated" datetime="2016-05-09T11:25:31+08:00" content="2016-05-09">
+              2016-05-09
             </time>
           </span>
 
@@ -266,8 +263,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/others/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
                   </a>
                 </span>
 
@@ -282,8 +279,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/12/使用hexo搭建github博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/12/使用hexo搭建github博客/" itemprop="commentsCount"></span>
+                <a href="/2016/05/09/args和kwargs的用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/args和kwargs的用法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -306,22 +303,16 @@
       
 
       
-        <p>一年之前就折腾过一次博客，写到中途觉得没有用为知笔记本方便，就放弃了。<br>时隔一年之久，再次萌发了写博客的念头，在安装hexo的过程中，发现之前安装的记忆已经完全回想不起来了，所以这次便将安装的过程记录下来，以备后用。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Hexo是基于Node.js的，所以要首先安装Node.js。Node.js直接官网下载安装包安装。<br>另外，由于需要将博客提交到Github上去，所以要安装git。git安装在mac下安装比较简单，一条命令搞定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install git</span><br></pre></td></tr></table></figure>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo</span><br></pre></td></tr></table></figure>
-<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>安装完成后，切换目录到创建博客的目录，执行下面命令，hexo会自动在目标文件夹下建立网站需要的所有文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init</span><br></pre></td></tr></table></figure>
-<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>初始化完成后，执行以下命令表示安装当前目录package.json文件中配置的dependencies模块。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install</span><br></pre></td></tr></table></figure>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>一切准备就绪后，在博客目录下运行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server -g</span><br></pre></td></tr></table></figure></p>
-<p>然后用浏览器访问<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a>, 就可以在本地打开该博客了。</p>
-<h2 id="更新hexo"><a href="#更新hexo" class="headerlink" title="更新hexo"></a>更新hexo</h2><p>在官方发布新版本后，可以在博客目录运行以下命令进行版本的更新。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm update</span><br></pre></td></tr></table></figure>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>Hexo 3.0版本后需要淡定安装发布插件，检查博客目录的node_modules目录中有没有hexo-deployer-git文件夹，如果没有则执行一下命令安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<p>添加–save参数安装的模块名字及其版本信息会出现在package.json的dependencies选项中。</p>
-<p>另外，从Hexo 3.0开始配置文件_config.yml中的部署类型要填写成git:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git  ## 部署类型</span><br><span class="line">  repository: &lt;repository url&gt; ## git仓库的地址</span><br><span class="line">  branch: [branch] ## 一般都是master</span><br></pre></td></tr></table></figure></p>
-<p>以上，博客就可以正常使用和发布了。</p>
+        <p><code>*args and **kwargs</code> are mostly used in function definitions. <code>*args and **kwargs</code> allow you to pass a variable number of arguments to a function. What variable means here is that you do not know beforehand how many arguments can be passed to your function by the user. so in this case you use these two keywords.</p>
+<p>First of all let me tell you that it is not necessary to wirte <code>* args or **kwargs</code> . Only the <code>*(asterisk)</code> is necessary. You could have also written <code>*var and **vars</code> . Writing <code>*args and **kwargs</code> is just a convention. So now lets take a look at <code>*args</code> first.</p>
+<h2 id="Usage-of-args"><a href="#Usage-of-args" class="headerlink" title="Usage of *args"></a>Usage of <code>*args</code></h2><p><code>*args</code> is used to send a <strong>non-keyworded</strong> variable length argument list to the function. Here’s an example to help you get a clear idea:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_var_args</span><span class="params">(f_arg, *args)</span>:</span></span><br><span class="line">    print(<span class="string">"first normal arg:"</span>, f_arg)</span><br><span class="line">    <span class="keyword">for</span> arg <span class="keyword">in</span> args:</span><br><span class="line">        print(<span class="string">'another arg through *args'</span>, arg)</span><br><span class="line"></span><br><span class="line">test_var_args(<span class="string">'yasoob'</span>, <span class="string">'python'</span>, <span class="string">'eggs'</span>, <span class="string">'test'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>This produces the following result:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">first normal arg: yasoob</span><br><span class="line">another arg through *args python</span><br><span class="line">another arg through *args eggs</span><br><span class="line">another arg through *args test</span><br></pre></td></tr></table></figure></p>
+<p>I hope this cleared away any confusion that you had. So now let’s talk about <code>**kwargs</code>.</p>
+<h2 id="Usage-of-kwargs"><a href="#Usage-of-kwargs" class="headerlink" title="Usage of **kwargs"></a>Usage of <code>**kwargs</code></h2><p><code>**kwargs</code> allows you to pass <strong>keyworded</strong> variable length of arguments to a function. You should use <code>**kwargs</code> if you want to handle <strong>named arguments</strong> in a function. Here is an example to get you going with it:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">greet_me</span><span class="params">(**kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> kwargs.items():</span><br><span class="line">        print(<span class="string">"&#123;0&#125; == &#123;1&#125;"</span>.format(key, value))</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>greet_me(name=<span class="string">"yasoob"</span>)</span><br><span class="line">name == yasoob</span><br></pre></td></tr></table></figure></p>
+<p>So you can see how we handled a keyworded argument list in our function. This is just the basics of <code>**kwargs</code> and you can see how useful it is.</p>
+<h2 id="Using-args-and-kwargs-to-call-a-function"><a href="#Using-args-and-kwargs-to-call-a-function" class="headerlink" title="Using *args and **kwargs to call a function"></a>Using <code>*args and **kwargs</code> to call a function</h2><p>So here we will see how to call a function using <code>*args and **kwargs</code>. Just consider that you have this little function:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test_args_kwargs</span><span class="params">(arg1, arg2, arg3)</span>:</span></span><br><span class="line">    print(<span class="string">"arg1:"</span>, arg1)</span><br><span class="line">    print(<span class="string">"arg2:"</span>, arg2)</span><br><span class="line">    print(<span class="string">"arg3:"</span>, arg3)</span><br></pre></td></tr></table></figure></p>
+<p>Now you can use <code>*args or **kwargs</code> to pass arguments to this little function. Here’s how to do it:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># first with *args</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>args = (<span class="string">'two'</span>, <span class="number">3</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_args_kwargs(*args)</span><br><span class="line">arg1: two</span><br><span class="line">arg2: <span class="number">3</span></span><br><span class="line">arg3: <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># now with **kwargs</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>kwargs = &#123;<span class="string">"arg3"</span>: <span class="number">3</span>, <span class="string">"arg2"</span>: <span class="string">"two"</span>, <span class="string">"arg1"</span>: <span class="number">5</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>test_args_kwargs(**kwargs)</span><br><span class="line">arg1: <span class="number">5</span></span><br><span class="line">arg2: two</span><br><span class="line">arg3: <span class="number">3</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="Order-of-using-args-kwargs-and-formal-args"><a href="#Order-of-using-args-kwargs-and-formal-args" class="headerlink" title="Order of using *args **kwargs and formal args"></a>Order of using <code>*args **kwargs and formal args</code></h4><p>So if you want to use all three of these in functions then the order is<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">some_func(fargs, *args, **kwargs)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -342,7 +333,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -351,13 +342,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/04/20/Mac安装win7后无法引导/" rel="next" title="Mac安装win7后无法引导">
+                <i class="fa fa-chevron-left"></i> Mac安装win7后无法引导
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/12/为github博客绑定域名/" rel="prev" title="为github博客绑定域名">
-                为github博客绑定域名 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -383,8 +374,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/12/使用hexo搭建github博客/"
-           data-title="使用hexo搭建github博客" data-url="http://gaoqiang.biz/2016/04/12/使用hexo搭建github博客/">
+      <div class="ds-thread" data-thread-key="2016/05/09/args和kwargs的用法/"
+           data-title="args和kwargs的用法" data-url="http://gaoqiang.biz/2016/05/09/args和kwargs的用法/">
       </div>
     
   </div>
@@ -506,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo"><span class="nav-number">1.1.</span> <span class="nav-text">安装hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化"><span class="nav-number">1.2.</span> <span class="nav-text">初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装依赖"><span class="nav-number">1.3.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">1.4.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新hexo"><span class="nav-number">2.</span> <span class="nav-text">更新hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署"><span class="nav-number">3.</span> <span class="nav-text">部署</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage-of-args"><span class="nav-number">1.</span> <span class="nav-text">Usage of *args</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage-of-kwargs"><span class="nav-number">2.</span> <span class="nav-text">Usage of **kwargs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-args-and-kwargs-to-call-a-function"><span class="nav-number">3.</span> <span class="nav-text">Using *args and **kwargs to call a function</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Order-of-using-args-kwargs-and-formal-args"><span class="nav-number">3.0.1.</span> <span class="nav-text">Order of using *args **kwargs and formal args</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
