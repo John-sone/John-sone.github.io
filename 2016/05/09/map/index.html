@@ -80,31 +80,19 @@
 
 
 
-<meta name="description" content="元组在python的数据结构中是属于比较简单的一种，这里只是简单介绍一些元组需要注意的细节。
-
-元组的速度比列表更快。如果只是定义一系列仅需对其进行遍历的常量，请使用元组。
-使用元组对不可变的数据进行“写保护”将会使得代码更加安全。
-元组和列表可以通过，tuple()和list()内建函数互相转换。
-如果要创建单元素元组，必须在值之后加上一个逗号。没有逗号，python会认为是一个额外的圆括号，不">
+<meta name="description" content="Map applies a function to all the items in an input_list. Here is the blueprint:Blueprint1map(function_to_apply, list_of_inputs)
+Most of the times we want to pass all the list elements to a function o">
 <meta property="og:type" content="article">
-<meta property="og:title" content="元组">
-<meta property="og:url" content="http://gaoqiang.biz/2016/04/14/元组/index.html">
+<meta property="og:title" content="map">
+<meta property="og:url" content="http://gaoqiang.biz/2016/05/09/map/index.html">
 <meta property="og:site_name" content="猫窝">
-<meta property="og:description" content="元组在python的数据结构中是属于比较简单的一种，这里只是简单介绍一些元组需要注意的细节。
-
-元组的速度比列表更快。如果只是定义一系列仅需对其进行遍历的常量，请使用元组。
-使用元组对不可变的数据进行“写保护”将会使得代码更加安全。
-元组和列表可以通过，tuple()和list()内建函数互相转换。
-如果要创建单元素元组，必须在值之后加上一个逗号。没有逗号，python会认为是一个额外的圆括号，不">
-<meta property="og:updated_time" content="2016-04-14T05:24:05.000Z">
+<meta property="og:description" content="Map applies a function to all the items in an input_list. Here is the blueprint:Blueprint1map(function_to_apply, list_of_inputs)
+Most of the times we want to pass all the list elements to a function o">
+<meta property="og:updated_time" content="2016-05-09T09:39:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="元组">
-<meta name="twitter:description" content="元组在python的数据结构中是属于比较简单的一种，这里只是简单介绍一些元组需要注意的细节。
-
-元组的速度比列表更快。如果只是定义一系列仅需对其进行遍历的常量，请使用元组。
-使用元组对不可变的数据进行“写保护”将会使得代码更加安全。
-元组和列表可以通过，tuple()和list()内建函数互相转换。
-如果要创建单元素元组，必须在值之后加上一个逗号。没有逗号，python会认为是一个额外的圆括号，不">
+<meta name="twitter:title" content="map">
+<meta name="twitter:description" content="Map applies a function to all the items in an input_list. Here is the blueprint:Blueprint1map(function_to_apply, list_of_inputs)
+Most of the times we want to pass all the list elements to a function o">
 
 
 
@@ -122,7 +110,7 @@
   };
 </script>
 
-  <title> 元组 | 猫窝 </title>
+  <title> map | 猫窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -252,7 +240,7 @@
             
             
               
-                元组
+                map
               
             
           </h1>
@@ -264,8 +252,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-14T13:08:50+08:00" content="2016-04-14">
-              2016-04-14
+            <time itemprop="dateCreated" datetime="2016-05-09T17:23:01+08:00" content="2016-05-09">
+              2016-05-09
             </time>
           </span>
 
@@ -294,8 +282,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/14/元组/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/14/元组/" itemprop="commentsCount"></span>
+                <a href="/2016/05/09/map/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/map/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -318,15 +306,11 @@
       
 
       
-        <p>元组在python的数据结构中是属于比较简单的一种，这里只是简单介绍一些元组需要注意的细节。</p>
-<ol>
-<li>元组的速度比列表更快。如果只是定义一系列仅需对其进行遍历的常量，请使用元组。</li>
-<li>使用元组对不可变的数据进行“写保护”将会使得代码更加安全。</li>
-<li>元组和列表可以通过，tuple()和list()内建函数互相转换。</li>
-<li>如果要创建单元素元组，必须在值之后加上一个逗号。没有逗号，python会认为是一个额外的圆括号，不会创建元组。</li>
-<li>使用元组可以同时赋值多个值。该特性有多种用途，比如需要将某一个名称指定某一个特定范围的值，还可以创建返回多值的函数，只需要返回一个包含多值的元组。调用着可以将其视为一个简单的元组，也可以将其赋值给不同的变量。</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>v = (<span class="string">'A'</span>, <span class="number">2</span>, <span class="keyword">True</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>(x, y, z) = v</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line"><span class="string">'A'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>y</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z</span><br><span class="line"><span class="keyword">True</span></span><br></pre></td></tr></table></figure>
+        <p><code>Map</code> applies a function to all the items in an input_list. Here is the blueprint:<br><strong>Blueprint</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map(function_to_apply, list_of_inputs)</span><br></pre></td></tr></table></figure></p>
+<p>Most of the times we want to pass all the list elements to a function one by one and then collect the output. For instance:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>items = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">squared = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> items:</span><br><span class="line">    squared.append(i**<span class="number">2</span>)</span><br></pre></td></tr></table></figure></p>
+<p><code>Map</code> allows us to implement this in a much simpler and nicer way. Here you go:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">items = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">squared = list(map(<span class="keyword">lambda</span> x: x**<span class="number">2</span>, items))</span><br></pre></td></tr></table></figure></p>
+<p>Most of the times we use lambdas with <code>map</code> so i did the same. Instead of a list of inputs we can even have a list of functions!<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x*x)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x+x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x*x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> (x+x)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>funcs = [multiply, add]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    value = list(map(<span class="keyword">lambda</span> x: x(i), funcs))</span><br><span class="line">    print(value)</span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">[<span class="number">4</span>, <span class="number">4</span>]</span><br><span class="line">[<span class="number">9</span>, <span class="number">6</span>]</span><br><span class="line">[<span class="number">16</span>, <span class="number">8</span>]</span><br></pre></td></tr></table></figure></p>
+<p>Note that <code>map(f, iterable)</code> is basically equivalent to <code>[f(x) for x in iterable]</code>.</p>
 
       
     </div>
@@ -356,16 +340,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/14/append和extend的区别/" rel="next" title="append和extend的区别">
-                <i class="fa fa-chevron-left"></i> append和extend的区别
+              <a href="/2016/05/09/生成器/" rel="next" title="生成器">
+                <i class="fa fa-chevron-left"></i> 生成器
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/04/15/从任意长度的可迭代对象中分解元素/" rel="prev" title="从任意长度的可迭代对象中分解元素">
-                从任意长度的可迭代对象中分解元素 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/05/09/filter/" rel="prev" title="filter">
+                filter <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -392,8 +376,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/14/元组/"
-           data-title="元组" data-url="http://gaoqiang.biz/2016/04/14/元组/">
+      <div class="ds-thread" data-thread-key="2016/05/09/map/"
+           data-title="map" data-url="http://gaoqiang.biz/2016/05/09/map/">
       </div>
     
   </div>

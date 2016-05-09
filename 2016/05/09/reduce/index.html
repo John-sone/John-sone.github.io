@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python," />
 
 
 
@@ -80,15 +80,16 @@
 
 
 
-<meta name="description" content="妍式物语">
-<meta property="og:type" content="website">
-<meta property="og:title" content="猫窝">
-<meta property="og:url" content="http://gaoqiang.biz/tags/Mac/index.html">
+<meta name="description" content="reduce apply function of two arguments cumulatively to the items of sequence, from left to right, so as to reduce the sequence to a single value. For example, reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])">
+<meta property="og:type" content="article">
+<meta property="og:title" content="reduce">
+<meta property="og:url" content="http://gaoqiang.biz/2016/05/09/reduce/index.html">
 <meta property="og:site_name" content="猫窝">
-<meta property="og:description" content="妍式物语">
+<meta property="og:description" content="reduce apply function of two arguments cumulatively to the items of sequence, from left to right, so as to reduce the sequence to a single value. For example, reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])">
+<meta property="og:updated_time" content="2016-05-09T10:01:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="猫窝">
-<meta name="twitter:description" content="妍式物语">
+<meta name="twitter:title" content="reduce">
+<meta name="twitter:description" content="reduce apply function of two arguments cumulatively to the items of sequence, from left to right, so as to reduce the sequence to a single value. For example, reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])">
 
 
 
@@ -106,7 +107,7 @@
   };
 </script>
 
-  <title> 标签: Mac | 猫窝 </title>
+  <title> reduce | 猫窝 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -127,7 +128,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -215,46 +216,147 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        Mac
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                reduce
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-09T17:52:44+08:00" content="2016-05-09">
+              2016-05-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/09/reduce/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/09/reduce/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p><code>reduce</code> apply function of two arguments cumulatively to the items of sequence, from left to right, so as to reduce the sequence to a single value. For example, <code>reduce(lambda x, y: x+y, [1, 2, 3, 4, 5])</code> calculates <code>((((1+2)+3)+4)+5)</code>. The left argument <code>X</code>, is the accumulated value and the right argument <code>Y</code>, is the update value from the sequence. </p>
+<p>Roughly equivalent to:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reduce</span><span class="params">(function, iterable, initializer=None)</span>:</span></span><br><span class="line">    it = iter(iterable)</span><br><span class="line">    <span class="keyword">if</span> initializer <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        value = next(it)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value = initializer</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> it:</span><br><span class="line">        value = function(value, element)</span><br><span class="line">    <span class="keyword">return</span> value</span><br></pre></td></tr></table></figure></p>
 
-      <h1 class="post-title">
+      
+    </div>
+    
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/04/20/Mac安装win7后无法引导/" itemprop="url">
-              
-                <span itemprop="name">Mac安装win7后无法引导</span>
-              
-            </a>
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+      
+    </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-20T11:51:26+08:00"
-              content="2016-04-20" >
-          04-20
-        </time>
-      </div>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
 
-    </header>
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/09/filter/" rel="next" title="filter">
+                <i class="fa fa-chevron-left"></i> filter
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -262,6 +364,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/09/reduce/"
+           data-title="reduce" data-url="http://gaoqiang.biz/2016/05/09/reduce/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -281,8 +391,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -363,6 +482,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -459,6 +589,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
