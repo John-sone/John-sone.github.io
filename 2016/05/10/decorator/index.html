@@ -1,0 +1,656 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Writing first decorator12345678910111213141516171819202122232425def a_new_decorator(a_func):    def wrapTheFunction():        print(&apos;I am doing some boring work before executing a_func()&apos;)        a_fu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="decorator">
+<meta property="og:url" content="http://gaoqiang.biz/2016/05/10/decorator/index.html">
+<meta property="og:site_name" content="猫窝">
+<meta property="og:description" content="Writing first decorator12345678910111213141516171819202122232425def a_new_decorator(a_func):    def wrapTheFunction():        print(&apos;I am doing some boring work before executing a_func()&apos;)        a_fu">
+<meta property="og:updated_time" content="2016-05-11T08:11:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="decorator">
+<meta name="twitter:description" content="Writing first decorator12345678910111213141516171819202122232425def a_new_decorator(a_func):    def wrapTheFunction():        print(&apos;I am doing some boring work before executing a_func()&apos;)        a_fu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> decorator | 猫窝 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">猫窝</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                decorator
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-10T16:52:46+08:00" content="2016-05-10">
+              2016-05-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/programming/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/10/decorator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/decorator/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Writing-first-decorator"><a href="#Writing-first-decorator" class="headerlink" title="Writing first decorator"></a>Writing first decorator</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_new_decorator</span><span class="params">(a_func)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapTheFunction</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'I am doing some boring work before executing a_func()'</span>)</span><br><span class="line"></span><br><span class="line">        a_func()</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'I am doing some boring work after executing a_func()'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapTheFunction</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'I am a function which needs some decoration to remove my foul smell!'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"><span class="comment"># outputs: I am a function which needs some decoration to remove my foul smell!</span></span><br><span class="line"></span><br><span class="line">a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)</span><br><span class="line"><span class="comment"># now a_function_requiring_decoration is wrapped by wrapTheFunction()</span></span><br><span class="line"></span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"><span class="comment"># outputs:I am doing some boring work before executing a_func()</span></span><br><span class="line"><span class="comment">#         I am a function which needs some decoration to remove my foul smell!</span></span><br><span class="line"><span class="comment">#         I am doing some boring work after executing a_func()</span></span><br></pre></td></tr></table></figure>
+<p>Did you get it? This is exactly what the decorators do in Python! They wrap a function and modify its behaviour in one way or the another. Now you might be wondering that we did not use the @ anywhere in our code? That is just a short way of making up a decorated function. Here is how we could have run the previous code sample using @.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@a_new_decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span><br><span class="line">    Hey yo! Decorate me!</span><br><span class="line">    :return: None</span><br><span class="line">    '''</span></span><br><span class="line">    print(<span class="string">'I am a function which needs some decoration to remove my foul smell!'</span>)</span><br><span class="line">    </span><br><span class="line">a_function_requiring_decoration()</span><br><span class="line"><span class="comment"># outputs: I am doing some boring work before executing a_func()</span></span><br><span class="line"><span class="comment">#          I am a function which needs some decoration to remove my foul smell!</span></span><br><span class="line"><span class="comment">#          I am doing some boring work after executing a_func()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># the @a_new_decorator is just a short way of saying:</span></span><br><span class="line">a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)</span><br></pre></td></tr></table></figure></p>
+<p>Now there is one problem with our code. If we run:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(a_function_requiring_decoration.__doc__)</span><br><span class="line"><span class="comment"># outputs: None</span></span><br></pre></td></tr></table></figure></p>
+<p>That’s not what we expected! Its docstring is “Hey yo! Decorate me!”. Well our function was replaced by wrapTheFunction. It overrode the name and docstring of our function. Luckly Python provides us a simple function to solve this problem and that is <code>functools.wraps</code>. Let’s modify our previous example to use <code>functools.wraps</code>:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_new_decorator</span><span class="params">(a_func)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(a_func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">wrapTheFunction</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">'I am doing some boring work before executing a_func()'</span>)</span><br><span class="line"></span><br><span class="line">        a_func()</span><br><span class="line"></span><br><span class="line">        print(<span class="string">'I am doing some boring work after executing a_func()'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> wrapTheFunction</span><br><span class="line"></span><br><span class="line"><span class="meta">@a_new_decorator</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a_function_requiring_decoration</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span><br><span class="line">    Hey you! Decorate me!</span><br><span class="line">    :return: None</span><br><span class="line">    '''</span></span><br><span class="line">    print(<span class="string">'I am a function which needs some decoration to remove my foul smell!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># a_function_requiring_decoration()</span></span><br><span class="line"><span class="comment"># a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoration)</span></span><br><span class="line"><span class="comment"># a_function_requiring_decoration()</span></span><br><span class="line"></span><br><span class="line">print(a_function_requiring_decoration.__doc__)</span><br><span class="line"><span class="comment"># outputs: </span></span><br><span class="line"><span class="comment">#    Hey you! Decorate me!</span></span><br><span class="line"><span class="comment">#    :return: None</span></span><br></pre></td></tr></table></figure></p>
+<p>Now that is much better. </p>
+<p><strong>Blueprint</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decorator_name</span><span class="params">(f)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(f)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decorated</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> can_run:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"Function will not run"</span></span><br><span class="line">        <span class="keyword">return</span> f(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> decorated</span><br><span class="line"></span><br><span class="line"><span class="meta">@decorator_name</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span>(<span class="string">"Function is running"</span>)</span><br><span class="line"></span><br><span class="line">can_run = <span class="keyword">True</span></span><br><span class="line">print(func())</span><br><span class="line"><span class="comment"># Output: Function is running</span></span><br><span class="line"></span><br><span class="line">can_run = <span class="keyword">False</span></span><br><span class="line">print(func())</span><br><span class="line"><span class="comment"># Output: Function will not run</span></span><br></pre></td></tr></table></figure></p>
+<p>Note: <code>@wraps</code> takes a function to be decorated and adds the functionality of copying over the function name, docstring, arguments list, etc. This allows to access the pre-decorated function’s properties in the decorator. </p>
+<h2 id="Use-cases"><a href="#Use-cases" class="headerlink" title="Use-cases"></a>Use-cases</h2><p>Now let’s take a look at the areas where docorators really shine and their usage makes something really easy to manage.</p>
+<h3 id="Authorization"><a href="#Authorization" class="headerlink" title="Authorization"></a>Authorization</h3><p>Decorators can help to check whether someone is authorized to use an endpoint in a web application. They are extensively used in Flask web framework and Django. Here is an example to empoly decorator based authentication:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">requires_auth</span><span class="params">(f)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(f)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decorated</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        auth = request.authorization</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> auth <span class="keyword">or</span> <span class="keyword">not</span> check_auth(auth.username, auth.password):</span><br><span class="line">            authenticate()</span><br><span class="line">        <span class="keyword">return</span> f(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> decorated</span><br></pre></td></tr></table></figure></p>
+<h3 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h3><p>Logging is another area where the decorators shine. Here is an example:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logit</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">    @wraps(func)</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">with_logging</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">        print(func.__name__ + <span class="string">" was called"</span>)</span><br><span class="line">        <span class="keyword">return</span> func(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> with_logging</span><br><span class="line"></span><br><span class="line"><span class="meta">@logit</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">addition_func</span><span class="params">(x)</span>:</span></span><br><span class="line">   <span class="string">"""Do some math."""</span></span><br><span class="line">   <span class="keyword">return</span> x + x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">result = addition_func(<span class="number">4</span>)</span><br><span class="line">print(result)</span><br><span class="line"><span class="comment"># outputs: addition_func was called</span></span><br><span class="line"><span class="comment">#          8</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Decorators-with-Arguments"><a href="#Decorators-with-Arguments" class="headerlink" title="Decorators with Arguments"></a>Decorators with Arguments</h2><p>Come to think of it, isn’t <code>@wraps</code> also a decorator? But, it takes an argument like any normal function can do. So, why can’t we do that too?</p>
+<p>This is because when you use the <code>@my_decorator</code> syntax, you are applying a wrapper function with a single function as a parameter Remember, everything in Python is an object, and this include functions! With what in mind, we can write a function that returns a wrapper function.</p>
+<h3 id="Nesting-a-Decorator-Within-a-Function"><a href="#Nesting-a-Decorator-Within-a-Function" class="headerlink" title="Nesting a Decorator Within a Function"></a>Nesting a Decorator Within a Function</h3><p>Let’s go back to our logging example, and create a wrapper which lets us specify a logfile to output to.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logit</span><span class="params">(logfile=<span class="string">'out.log'</span>)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">logging_decorator</span><span class="params">(func)</span>:</span></span><br><span class="line"><span class="meta">        @wraps(func)</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">wrapped_function</span><span class="params">(*args, **kwargs)</span>:</span></span><br><span class="line">            log_string = func.__name__ + <span class="string">" was called"</span></span><br><span class="line">            print(log_string)</span><br><span class="line">            <span class="comment"># Open the logfile and append</span></span><br><span class="line">            <span class="keyword">with</span> open(logfile, <span class="string">'a'</span>) <span class="keyword">as</span> opened_file:</span><br><span class="line">                <span class="comment"># Now we log to the specified logfile</span></span><br><span class="line">                opened_file.write(log_string + <span class="string">'\n'</span>)</span><br><span class="line">        <span class="keyword">return</span> wrapped_function</span><br><span class="line">    <span class="keyword">return</span> logging_decorator</span><br><span class="line"></span><br><span class="line"><span class="meta">@logit()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myfunc1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">myfunc1()</span><br><span class="line"><span class="comment"># Output: myfunc1 was called</span></span><br><span class="line"><span class="comment"># A file called out.log now exists, with the above string</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@logit(logfile='func2.log')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myfunc2</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">myfunc2()</span><br><span class="line"><span class="comment"># Output: myfunc2 was called</span></span><br><span class="line"><span class="comment"># A file called func2.log now exists, with the above string</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Decorator-Classes"><a href="#Decorator-Classes" class="headerlink" title="Decorator Classes"></a>Decorator Classes</h3><p>Now we have our logit decorator in production, but when some parts of our application are considered critical, failure might be something that needs more immediate attention. Let’s say sometimes you want to just log to a file. Other times you want an email sent, so the problem is brought to your attention, and still keep a log for your own records. This is a case for using inheritence, but so far we’ve only seen functions being used to build decorators.</p>
+<p>Luckily, classes can also be used to build decorators. So, Let’s rebuild logit as a class instead of a function.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">logit</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, logfile=<span class="string">'out.log'</span>)</span>:</span></span><br><span class="line">        self.logfile = logfile</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, func)</span>:</span></span><br><span class="line">        log_string = func.__name__ + <span class="string">" was called"</span></span><br><span class="line">        print(log_string)</span><br><span class="line">        <span class="comment"># Open the logfile and append</span></span><br><span class="line">        <span class="keyword">with</span> open(self.logfile, <span class="string">'a'</span>) <span class="keyword">as</span> opened_file:</span><br><span class="line">            <span class="comment"># Now we log to the specified logfile</span></span><br><span class="line">            opened_file.write(log_string + <span class="string">'\n'</span>)</span><br><span class="line">        <span class="comment"># Now, send a notification</span></span><br><span class="line">        self.notify()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">notify</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># logit only logs, no more</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p>This implementation has an additional advantage of being much cleaner than the nested function approach, and wrapping a function still will use the same syntax as before:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@logit()</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myfunc1</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p>Now, let’s subclass logit to add email functionality.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">email_logit</span><span class="params">(logit)</span>:</span></span><br><span class="line">    <span class="string">'''</span><br><span class="line">    A logit implementation for sending emails to admins</span><br><span class="line">    when the function is called.</span><br><span class="line">    '''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, email=<span class="string">'admin@myproject.com'</span>, *args, **kwargs)</span>:</span></span><br><span class="line">        self.email = email</span><br><span class="line">        super(logit, self).__init__(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">notify</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment"># Send an email to self.email</span></span><br><span class="line">        <span class="comment"># Will not be implemented here</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure></p>
+<p>From here, <code>@email_logit</code> works just like <code>@logit</code> but sends an email to admin in addition to logging.</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/09/reduce/" rel="next" title="reduce">
+                <i class="fa fa-chevron-left"></i> reduce
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/10/decorator/"
+           data-title="decorator" data-url="http://gaoqiang.biz/2016/05/10/decorator/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Johnny.G" />
+          <p class="site-author-name" itemprop="name">Johnny.G</p>
+          <p class="site-description motion-element" itemprop="description">妍式物语</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/John-sone" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://m.weibo.cn/u/2703568625" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element">
+            <div class="links-of-blogroll-title">友情链接</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.yulongjun.com" title="于龙君的博客" target="_blank">于龙君的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-first-decorator"><span class="nav-number">1.</span> <span class="nav-text">Writing first decorator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Use-cases"><span class="nav-number">2.</span> <span class="nav-text">Use-cases</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Authorization"><span class="nav-number">2.1.</span> <span class="nav-text">Authorization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logging"><span class="nav-number">2.2.</span> <span class="nav-text">Logging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decorators-with-Arguments"><span class="nav-number">3.</span> <span class="nav-text">Decorators with Arguments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nesting-a-Decorator-Within-a-Function"><span class="nav-number">3.1.</span> <span class="nav-text">Nesting a Decorator Within a Function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decorator-Classes"><span class="nav-number">3.2.</span> <span class="nav-text">Decorator Classes</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Johnny.G</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gaoqiangbiz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
